@@ -54,7 +54,12 @@ Title="SentroFPS" Height="540" Width="900" WindowStyle="None" AllowsTransparency
 
 
 <!-- Panneau droit: actions -->
-<StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal" Spacing="12">
+<StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+    <StackPanel.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0,0,12,0"/>
+        </Style>
+    </StackPanel.Resources>
 <Button x:Name="BtnUpdate" Content="Mettre à jour" Width="160" Height="44" Click="BtnUpdate_Click"/>
 <Button x:Name="BtnPlay" Content="Jouer" Width="160" Height="44" Click="BtnPlay_Click"/>
 </StackPanel>
@@ -72,4 +77,5 @@ Title="SentroFPS" Height="540" Width="900" WindowStyle="None" AllowsTransparency
 </EventTrigger>
 </Window.Triggers>
 </Grid>
+
 </Window>
