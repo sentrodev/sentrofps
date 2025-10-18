@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore SentroFPS/launcher-wpf/SentroFPS.Launcher.csproj
 
       - name: Build launcher
-        run: dotnet publish SentroFPS/launcher-wpf/SentroFPS.Launcher.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o out
+        run: dotnet publish SentroFPS/launcher-wpf/SentroFPS.Launcher.csproj -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o out
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
