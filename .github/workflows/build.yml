@@ -3,7 +3,7 @@ name: Build SentroFPS Launcher
 on:
   push:
     tags:
-      - 'v*.*.*'   # Ex: v1.0.0
+      - 'v*.*.*'
   workflow_dispatch:
 
 jobs:
@@ -25,22 +25,28 @@ jobs:
       - name: Build launcher
         run: dotnet publish SentroFPS/launcher-wpf/SentroFPS.Launcher.csproj -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o out
 
+      - name: Rename executable
+        run: |
+          cd out
+          ren *.exe SentroFPS.exe
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sentrofps-launcher
-          path: out/**
+          name: SentroFPS
+          path: out/SentroFPS.exe
+
   release:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: sentrofps-launcher
+          name: SentroFPS
           path: out
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: out/**
+          files: out/SentroFPS.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
