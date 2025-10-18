@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SentroFPS Panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<h1 class="title">Sentro<span>FPS</span> Panel</h1>
+<p class="subtitle">Modifier la configuration distante (GitHub)</p>
+
+
+<div class="card">
+<label>GitHub Token (admin seulement)</label>
+<input id="token" type="password" placeholder="ghp_..." />
+
+
+<label>Owner / Repo / Path</label>
+<div class="row">
+<input id="owner" placeholder="TON_USER" />
+<input id="repo" placeholder="sentrofps-config" />
+<input id="path" placeholder="config.json" />
+<input id="branch" placeholder="main" value="main" />
+</div>
+
+
+<label>Configuration</label>
+<textarea id="editor" rows="16" spellcheck="false"></textarea>
+
+
+<div class="actions">
+<button id="load">Charger</button>
+<button id="save">Sauvegarder</button>
+</div>
+<p id="status"></p>
+</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
