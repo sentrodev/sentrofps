@@ -6,23 +6,23 @@ namespace SentroFPS.Launcher
 {
     public partial class App : Application
     {
-        [STAThread]
-        public static void Main()
+        protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             try
             {
-                File.WriteAllText("SentroFPS_log.txt", "Lancement SentroFPS.exe à " + DateTime.Now + "\n");
+                File.WriteAllText("SentroFPS_log.txt", "Démarrage de SentroFPS à " + DateTime.Now + "\n");
 
-                var app = new App();
                 var window = new MainWindow();
-                app.Run(window);
+                window.Show();
 
-                File.AppendAllText("SentroFPS_log.txt", "MainWindow lancée avec succès.\n");
+                File.AppendAllText("SentroFPS_log.txt", "Fenêtre affichée avec succès.\n");
             }
             catch (Exception ex)
             {
-                File.AppendAllText("SentroFPS_log.txt", "ERREUR : " + ex + "\n");
-                MessageBox.Show(ex.ToString(), "Crash SentroFPS");
+                File.AppendAllText("SentroFPS_log.txt", "Erreur au démarrage : " + ex + "\n");
+                MessageBox.Show(ex.ToString(), "Erreur SentroFPS", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
