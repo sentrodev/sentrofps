@@ -1,17 +1,29 @@
 using System;
+using System.IO;
 using System.Windows;
 
 namespace SentroFPS.Launcher
 {
     public partial class App : Application
     {
-        public App()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            this.DispatcherUnhandledException += (s, e) =>
+            base.OnStartup(e);
+
+            try
             {
-                MessageBox.Show(e.Exception.ToString(), "Erreur au démarrage");
-                e.Handled = true;
-            };
+                File.AppendAllText("SentroFPS_log.txt", "Lancement SentroFPS à " + DateTime.Now + "\n");
+
+                var main = new MainWindow();
+                main.Show();
+
+                File.AppendAllText("SentroFPS_log.txt", "MainWindow affichée avec succès.\n");
+            }
+            catch (Exception ex)
+            {
+                File.AppendAllText("SentroFPS_log.txt", "Erreur au démarrage : " + ex.ToString() + "\n");
+                MessageBox.Show(ex.ToString(), "Erreur au démarrage");
+            }
         }
     }
 }
