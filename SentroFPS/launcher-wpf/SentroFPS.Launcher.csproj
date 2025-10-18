@@ -7,17 +7,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <!-- Empêche le trimming qui casse WPF -->
     <TrimUnusedDependencies>false</TrimUnusedDependencies>
 
-    <!-- Build compact et autoportant -->
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
 
-    <!-- Définit explicitement le point d'entrée -->
-    <StartupObject>SentroFPS.Launcher.App</StartupObject>
+    <StartupObject>SentroFPS.Launcher.Program</StartupObject>
 
-    <!-- Supprime l'avertissement sur Microsoft.NET.Sdk.WindowsDesktop -->
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
@@ -27,3 +23,4 @@
   </ItemGroup>
 
 </Project>
+
