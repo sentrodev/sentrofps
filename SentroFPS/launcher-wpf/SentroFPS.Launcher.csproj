@@ -14,13 +14,16 @@
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
 
-    <!-- Icône (optionnel si tu veux en ajouter une plus tard) -->
-    <!-- <ApplicationIcon>Assets\SentroFPS.ico</ApplicationIcon> -->
+    <!-- Définit explicitement le point d'entrée -->
+    <StartupObject>SentroFPS.Launcher.App</StartupObject>
+
+    <!-- Supprime l'avertissement sur Microsoft.NET.Sdk.WindowsDesktop -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Inclure tous les assets -->
     <Content Include="Assets\**" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
 </Project>
-
