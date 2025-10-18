@@ -7,8 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  id-token: write
+  contents: write  # ✅ donne l'autorisation de créer/modifier une release
 
 jobs:
   build:
@@ -27,7 +26,7 @@ jobs:
         run: dotnet restore SentroFPS/launcher-wpf/SentroFPS.Launcher.csproj
 
       - name: Build launcher
-        run: dotnet publish SentroFPS/launcher-wpf/SentroFPS.Launcher.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:TrimUnusedDependencies=false --self-contained true -o out
+        run: dotnet publish SentroFPS/launcher-wpf/SentroFPS.Launcher.csproj -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o out
 
       - name: Rename executable
         run: |
@@ -53,9 +52,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
-          name: ${{ github.ref_name }}
-          body: "Automatic release for ${{ github.ref_name }}"
           files: out/SentroFPS.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
