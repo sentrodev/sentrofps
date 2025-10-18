@@ -39,14 +39,19 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: SentroFPS
           path: out
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body: "Automatic release for ${{ github.ref_name }}"
           files: out/SentroFPS.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
